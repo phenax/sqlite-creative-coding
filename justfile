@@ -1,6 +1,6 @@
 set export
 
-CC := "gcc"
+CC := "cc"
 CFLAGS := f"-std=c11 -O2 \
 -Wall -Wextra -Wshadow -Wformat=2 -fsanitize=address,undefined \
 {{shell('pkg-config --cflags --libs sqlite3')}}"
@@ -19,3 +19,9 @@ run: build
 format:
   find src/ -iname '*.h' -o -iname '*.c' | xargs clang-format -i
 
+setup-db:
+  rm fun.db
+  sqlite3 fun.db < setup.sql
+
+image:
+  just run | magick display -resize 500% -
