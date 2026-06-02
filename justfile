@@ -1,27 +1,14 @@
-set export
+setup: setup-db
 
-CC := "cc"
-CFLAGS := f"-std=c11 -O2 \
--Wall -Wextra -Wshadow -Wformat=2 -fsanitize=address,undefined \
-{{shell('pkg-config --cflags --libs sqlite3')}}"
-OUTDIR := "build"
+run file *args: setup-db
+  sqlite3 fun.db {{args}} < {{file}}
 
-build: compile-flags
-  mkdir -p "{{OUTDIR}}"
-  {{CC}} {{CFLAGS}} src/*.c -o "{{OUTDIR}}/sqlheavy"
+image image_id:
+  ./image.sh {{image_id}} | magick display -resize 500% -
 
-run: build
-  "./{{OUTDIR}}/sqlheavy"
-
-@compile-flags:
-  echo '{{CFLAGS}}' | tr ' ' '\n' > ./compile_flags.txt
-
-format:
-  find src/ -iname '*.h' -o -iname '*.c' | xargs clang-format -i
+repl *args:
+  rlwrap sqlite3 fun.db {{args}}
 
 setup-db:
   rm fun.db
   sqlite3 fun.db < setup.sql
-
-image:
-  just run | magick display -resize 500% -

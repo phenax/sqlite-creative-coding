@@ -17,11 +17,8 @@
         {
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
-              gcc
+              imagemagick
               sqlite
-              clang-tools
-              unixtools.xxd
-              pkg-config
             ];
           };
         }
