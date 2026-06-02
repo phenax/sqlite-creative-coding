@@ -1,14 +1,24 @@
-setup: setup-db
+DB := "fun.db"
 
-run file *args: setup-db
-  sqlite3 fun.db {{args}} < {{file}}
+setup: reset-db
 
-image image_id:
-  ./image.sh {{image_id}} | magick display -resize 500% -
+run file *args:
+  sqlite3 "{{DB}}" {{args}} < "{{file}}"
+
+image file *args:
+  #!/usr/bin/env sh
+  set -eu
+  image_id=$(just run "{{file}}" {{args}})
+  just show-image "$image_id"
+
+show-image image_id:
+  #!/usr/bin/env sh
+  echo "Displaying $image_id" 1>&2
+  ./image.sh {{image_id}} | magick display -
 
 repl *args:
-  rlwrap sqlite3 fun.db {{args}}
+  rlwrap sqlite3 "{{DB}}" {{args}}
 
-setup-db:
-  rm fun.db
-  sqlite3 fun.db < setup.sql
+reset-db:
+  rm "{{DB}}"
+  sqlite3 "{{DB}}" < setup.sql
