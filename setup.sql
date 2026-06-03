@@ -18,3 +18,10 @@ CREATE TABLE pixels (
   FOREIGN KEY(image_id) REFERENCES images(id),
   UNIQUE(image_id, x, y)
 );
+
+CREATE TRIGGER delete_pixels_when_image_deleted
+AFTER DELETE ON images
+WHEN (SELECT COUNT(*) FROM images WHERE id = OLD.id) = 0
+BEGIN
+  DELETE FROM pixels WHERE image_id = OLD.id;
+END;

@@ -12,8 +12,7 @@ image file *args:
   just show-image "$image_id"
 
 show-image image_id:
-  #!/usr/bin/env sh
-  echo "Displaying $image_id" 1>&2
+  echo "Displaying {{image_id}}" 1>&2
   ./image.sh {{image_id}} | magick display -
 
 repl *args:
