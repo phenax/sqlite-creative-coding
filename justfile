@@ -13,7 +13,7 @@ image file *args:
 
 show-image image_id:
   echo "Displaying {{image_id}}" 1>&2
-  ./image.sh {{image_id}} | tee output.ignore.txt | magick display ppm:-
+  ./image.sh "{{image_id}}" | tee >(magick ppm:- "media/{{image_id}}.png") | magick display ppm:-
 
 repl *args:
   rlwrap sqlite3 "{{DB}}" {{args}}
