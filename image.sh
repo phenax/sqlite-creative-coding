@@ -4,7 +4,7 @@ DB=fun.db
 
 [ $# -lt 1 ] && echo "Fuck" && exit 1;
 
-db() { sqlite3 -list "$DB" "$@"; }
+db() { sqlite3 -list -noheader "$DB" "$@"; }
 
 image_id="$1"
 echo "P3"
