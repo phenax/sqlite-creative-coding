@@ -1,5 +1,4 @@
-DELETE FROM images WHERE id = 'mandelbrot';
-INSERT INTO images (id, width, height) VALUES ('mandelbrot', 400, 400) RETURNING id;
+INSERT OR REPLACE INTO images (id, width, height) VALUES ('mandelbrot', 400, 400) RETURNING id;
 
 WITH RECURSIVE
   image AS (SELECT *, 0.008 AS scale, (width * 5)/7 AS ox, (height / 2) AS oy FROM images WHERE id = 'mandelbrot'),

@@ -2,6 +2,19 @@
 
 Generating some visuals with SQL because nobody stopped me
 
+### Dependencies
+- sqlite3
+- imagemagick
+
+### Setup
+- Using justfile: `just setup`
+- Directly: `sqlite3 fun.db < setup.sql`
+
+### Generate image
+- Using justfile: `just image src/mandelbrot.sql`
+- Directly: `sqlite3 fun.db < src/mandelbrot.sql && ./image.sh mandelbrot fun.db`
+
+
 <table>
   <tr>
     <td width="50%" valign="top">

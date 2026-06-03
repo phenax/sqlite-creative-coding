@@ -1,9 +1,8 @@
-DELETE FROM images WHERE id = 'circle';
-INSERT INTO images (id, width, height) VALUES ('circle', 200, 200) RETURNING id;
+INSERT OR REPLACE INTO images (id, width, height) VALUES ('circle', 400, 400) RETURNING id;
 
 WITH RECURSIVE
   image AS (SELECT * FROM images WHERE id = 'circle'),
-  circle AS (SELECT width/2 AS cx, height/2 AS cy, 80 AS radius FROM image),
+  circle AS (SELECT width/2 AS cx, height/2 AS cy, 160 AS radius FROM image),
   horizontal(x) AS
     (SELECT width FROM image UNION ALL SELECT x - 1 FROM horizontal WHERE x > 1),
   vertical(y) AS
@@ -11,7 +10,7 @@ WITH RECURSIVE
   _pixels(x, y, r, g, b) AS (SELECT
     x, y,
     150,
-    255 * MAX(0, MIN(1, (SELECT POW(x - cx, 2) + POW(y - cy, 2) - POW(radius, 2) FROM circle))),
+    255 * MAX(0, MIN(1, (SELECT (x - cx)*(x - cx) + (y - cy)*(y - cy) - radius*radius FROM circle))),
     150
     FROM vertical, horizontal
   )
