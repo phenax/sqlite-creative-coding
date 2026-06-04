@@ -31,7 +31,10 @@ Generating some visuals with SQL because nobody stopped me. With the magic of [r
       <h3><a href="./src/polka.sql">Just some dots</a></h3>
       <img src="media/polka.png" />
     </td>
-    <td width="50%" valign="top"></td>
+    <td width="50%" valign="top">
+      <h3><a href="./src/voronoi.sql">Voronoi</a></h3>
+      <img src="media/voronoi.png" />
+    </td>
   </tr>
 </table>
 
