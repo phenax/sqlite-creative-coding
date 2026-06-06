@@ -30,7 +30,10 @@ Generating some visuals with SQL because nobody stopped me. With the magic of [r
       <h3><a href="./src/wavey.sql">Wavey</a></h3>
       <img src="media/wavey.gif" />
     </td>
-    <td width="50%" valign="top"></td>
+    <td width="50%" valign="top">
+      <h3><a href="./src/rave.sql">Trigo - the blood dragon remix</a></h3>
+      <img src="media/rave.gif" />
+    </td>
   </tr>
 </table>
 
