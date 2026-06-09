@@ -29,6 +29,18 @@ CREATE TABLE pixels (
   UNIQUE(image_id, x, y)
 );
 
+CREATE TABLE audio_tracks (
+  id TEXT PRIMARY KEY,
+  sample_rate INTEGER NOT NULL,
+  format TEXT NOT NULL
+);
+CREATE TABLE audio_track_samples (
+  value INTEGER NOT NULL,
+  position INTEGER NOT NULL,
+  audio_track_id TEXT,
+  FOREIGN KEY(audio_track_id) REFERENCES audio_tracks(id) ON DELETE CASCADE
+);
+
 CREATE TRIGGER delete_pixels_when_image_reinserted_because_i_said_so_and_to_make_rerunning_easier
 BEFORE INSERT ON images
 BEGIN
@@ -40,3 +52,10 @@ BEFORE INSERT ON videos
 BEGIN
   DELETE FROM images WHERE video_id = NEW.id;
 END;
+
+CREATE TRIGGER delete_samples_when_track_reinserted_because_i_said_so_and_to_make_rerunning_easier
+BEFORE INSERT ON audio_tracks
+BEGIN
+  DELETE FROM audio_track_samples WHERE audio_track_id = NEW.id;
+END;
+

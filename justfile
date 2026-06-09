@@ -25,6 +25,16 @@ gen-video video_id:
   echo "Displaying {{video_id}}" 1>&2
   ./video.sh "{{video_id}}"
 
+audio file *args:
+  #!/usr/bin/env sh
+  set -eu
+  audio_id=$(just run "{{file}}" {{args}})
+  just gen-audio "$audio_id"
+
+gen-audio audio_id:
+  echo "Displaying {{audio_id}}" 1>&2
+  ./audio.sh "{{audio_id}}"
+
 repl *args:
   rlwrap sqlite3 "{{DB}}" {{args}}
 

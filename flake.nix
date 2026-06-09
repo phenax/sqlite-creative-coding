@@ -19,6 +19,7 @@
             buildInputs = with pkgs; [
               imagemagick
               sqlite
+              unixtools.xxd
             ];
           };
         }
