@@ -35,6 +35,17 @@ Generating some visuals with SQL because nobody stopped me. With the magic of [r
       <img src="media/rave.gif" />
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3><a href="./src/supermariobros.audio.sql">Super Mario Bros. theme</a></h3>
+      
+https://github.com/user-attachments/assets/1e181a1a-8e7b-4d98-9ab7-20ca6343d52d
+
+&nbsp;
+    </td>
+    <td width="50%" valign="top">
+    </td>
+  </tr>
 </table>
 
 ---
@@ -43,11 +54,12 @@ Generating some visuals with SQL because nobody stopped me. With the magic of [r
 
 ### Dependencies
 - sqlite3
-- imagemagick
+- imagemagick (for image)
+- ffmpeg+ffplay (for video,audio)
 
 ### Setup
 - Using justfile: `just setup`
-- Directly: `sqlite3 fun.db < setup.image.sql`
+- Directly: `sqlite3 fun.db < setup.sql`
 
 ### Generate image
 - Using justfile: `just image src/mandelbrot.image.sql`
@@ -57,3 +69,6 @@ Generating some visuals with SQL because nobody stopped me. With the magic of [r
 - Using justfile: `just video src/wavey.video.sql`
 - Directly: `sqlite3 fun.db < src/wavey.video.sql && ./video.sh wavey fun.db`
 
+### Generate audio
+- Using justfile: `just audio src/supermariobros.audio.sql`
+- Directly: `sqlite3 fun.db < src/supermariobros.audio.sql && ./audio.sh supermariobros fun.db`
