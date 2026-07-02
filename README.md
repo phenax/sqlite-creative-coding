@@ -44,6 +44,8 @@ https://github.com/user-attachments/assets/1e181a1a-8e7b-4d98-9ab7-20ca6343d52d
 &nbsp;
     </td>
     <td width="50%" valign="top">
+      <h3><a href="./src/spiral.video.sql">Pipes</a></h3>
+      <img src="media/spiral.gif" />
     </td>
   </tr>
 </table>
